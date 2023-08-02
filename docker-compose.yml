@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context:
+    ports:
+      -"8000:8000" # local port map to docker port
+    volumes:
+      - ./app:/app # live change codes inside of container without rebuild the image
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
