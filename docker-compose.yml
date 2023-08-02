@@ -3,11 +3,11 @@ version: "3.9"
 services:
   app:
     build:
-      context:
+      context: .
       args:
         - DEV=true # override the DEV arg in Dockerfile
     ports:
-      -"8000:8000" # local port map to docker port
+      - "8000:8000" # local port map to docker port
     volumes:
       - ./app:/app # live change codes inside of container without rebuild the image
     command: >
