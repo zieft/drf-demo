@@ -4,6 +4,8 @@ services:
   app:
     build:
       context:
+      args:
+        - DEV=true # override the DEV arg in Dockerfile
     ports:
       -"8000:8000" # local port map to docker port
     volumes:
