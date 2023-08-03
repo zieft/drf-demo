@@ -12,3 +12,22 @@ services:
       - ./app:/app # live change codes inside of container without rebuild the image
     command: >
       sh -c "python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - DB_HOST=db # db is exactly the name of the db service below
+      - DB_NAME=devdb
+      - DB_USER=devuser # use for login the db?
+      - DB_PASS=changeme
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13-alpine
+    volumes:
+      - dev-db-data:/var/lib/postgresql/data
+    environment: # init configurations for DB
+      - POSTGRES_DB=devdb
+      - POSTGRES_USER=devuser
+      - POSTGRES_PASSWORD=changeme
+
+volumes: # volumes has the same level as the services
+  dev-db-data:
