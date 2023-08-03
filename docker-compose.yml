@@ -15,7 +15,7 @@ services:
     environment:
       - DB_HOST=db # db is exactly the name of the db service below
       - DB_NAME=devdb
-      - DB_USER=devuser # use for login the db?
+      - DB_USER=devuser # use for connecting django in settings.py
       - DB_PASS=changeme
     depends_on:
       - db
