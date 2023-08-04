@@ -16,6 +16,8 @@ class UserManager(BaseUserManager):
         """Create, save and return a new user."""
         # self.model is finding a user instance from User class below
         # user must be spelt exactly right
+        if not email:
+            raise ValueError('User must have an email address.')
         user = self.model(email=self.normalize_email(email), **extra_field)
         user.set_password(password)  # hash password
         user.save(using=self._db)
