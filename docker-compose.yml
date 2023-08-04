@@ -11,7 +11,9 @@ services:
     volumes:
       - ./app:/app # live change codes inside of container without rebuild the image
     command: >
-      sh -c "python manage.py runserver 0.0.0.0:8000"
+      sh -c "python manage.py wait_for_db &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
     environment:
       - DB_HOST=db # db is exactly the name of the db service below
       - DB_NAME=devdb
