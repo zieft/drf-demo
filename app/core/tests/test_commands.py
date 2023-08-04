@@ -35,6 +35,6 @@ class CommandTests(SimpleTestCase):
         call_command('wait_for_db')
         
         # 检查 patched_check 方法是否被调用了六次。如果不是，这个断言（assertion）将会失败，测试也会失败。
-        self.assertEqual(patch_check.call_count, 6)
+        self.assertEqual(patched_check.call_count, 6)
         patched_check.assert_called_with(database=['default'])
         
